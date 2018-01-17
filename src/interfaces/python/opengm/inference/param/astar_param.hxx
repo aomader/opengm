@@ -16,7 +16,7 @@ public:
    typedef InfParamExporterAStar<INFERENCE> SelfType;
    typedef typename INFERENCE::AccumulationType AccumulationType;
    static void set
-   ( 
+   (
       Parameter & p,
       const opengm::python::pyenums::AStarHeuristic h,
       const ValueType bound ,
@@ -64,14 +64,17 @@ public:
          .def_readwrite("numberOfOpt", &Parameter::numberOfOpt_,
          "Select which n best states should be searched for while inference:"
          )
-         .add_property("heuristic", 
+         .def_readwrite("nodeOrder", &Parameter::nodeOrder_,
+         ""
+         )
+         .add_property("heuristic",
               &SelfType::getHeuristic, SelfType::setHeuristic,
          "heuristic can be:\n\n"
          "  -``'default'`` :default AStar heuristc (default)\n\n"
          "  -``'standart'`` : standart AStar heuristic \n\n"
-         "  -``'fast'`` : fast AStar heuristic for second order gm's"     
+         "  -``'fast'`` : fast AStar heuristic for second order gm's"
          )
-         .def ("set", &SelfType::set, 
+         .def ("set", &SelfType::set,
                (
                boost::python::arg("heuristic")=opengm::python::pyenums::DEFAULT_HEURISTIC,
                boost::python::arg("obectiveBound")= AccumulationType::template neutral<ValueType>(),
@@ -91,7 +94,7 @@ public:
          "  numberOfOpt: Select which n best states should be searched for while inference (default=1):\n\n"
          "Returns:\n"
          "  None\n\n"
-         ) 
+         )
       ;
 
    }
