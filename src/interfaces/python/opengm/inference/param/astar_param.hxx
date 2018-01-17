@@ -12,6 +12,7 @@ class InfParamExporterAStar{
 
 public:
    typedef typename INFERENCE::ValueType ValueType;
+   typedef typename INFERENCE::IndexType IndexType;
    typedef typename INFERENCE::Parameter Parameter;
    typedef InfParamExporterAStar<INFERENCE> SelfType;
    typedef typename INFERENCE::AccumulationType AccumulationType;
@@ -52,6 +53,16 @@ public:
          p.heuristic_=Parameter::STANDARDHEURISTIC;
    }
 
+   static void setNodeOrder( Parameter & p,const opengm::python::NumpyView<IndexType,1> nodeOrder){
+       p.nodeOrder_.clear();
+       for (auto &it : nodeOrder)
+        p.nodeOrder_.push_back(i);
+   }
+
+   static int getNodeOrder(const Paramater & p) {
+       return p.nodeOrder_.size();
+   }
+
    void static exportInfParam(const std::string & className){
       class_<Parameter > (className.c_str(), init< >() )
          .def_readwrite("obectiveBound", &Parameter::objectiveBound_,
@@ -64,7 +75,7 @@ public:
          .def_readwrite("numberOfOpt", &Parameter::numberOfOpt_,
          "Select which n best states should be searched for while inference:"
          )
-         .def_readwrite("nodeOrder", &Parameter::nodeOrder_,
+         .def_property("nodeOrder", &SelfType::getNodeOrder, SelfType::setNodeOrder,
          ""
          )
          .add_property("heuristic",
