@@ -59,8 +59,8 @@ public:
         p.nodeOrder_.push_back(it);
    }
 
-   static int getNodeOrder(const Parameter & p) {
-       return p.nodeOrder_.size();
+   static std::vector<IndexType> getNodeOrder(const Parameter & p) {
+       return p.nodeOrder_;
    }
 
    void static exportInfParam(const std::string & className){
