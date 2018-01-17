@@ -75,7 +75,7 @@ public:
          .def_readwrite("numberOfOpt", &Parameter::numberOfOpt_,
          "Select which n best states should be searched for while inference:"
          )
-         .def_property("nodeOrder", &SelfType::getNodeOrder, SelfType::setNodeOrder,
+         .add_property("nodeOrder", &SelfType::getNodeOrder, SelfType::setNodeOrder,
          ""
          )
          .add_property("heuristic",
