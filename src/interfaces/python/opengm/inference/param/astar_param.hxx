@@ -59,7 +59,7 @@ public:
         p.nodeOrder_.push_back(i);
    }
 
-   static int getNodeOrder(const Paramater & p) {
+   static int getNodeOrder(const Parameter & p) {
        return p.nodeOrder_.size();
    }
 
