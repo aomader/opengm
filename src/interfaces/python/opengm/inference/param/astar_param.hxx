@@ -56,7 +56,7 @@ public:
    static void setNodeOrder( Parameter & p,const opengm::python::NumpyView<IndexType,1> nodeOrder){
        p.nodeOrder_.clear();
        for (auto &it : nodeOrder)
-        p.nodeOrder_.push_back(i);
+        p.nodeOrder_.push_back(it);
    }
 
    static int getNodeOrder(const Parameter & p) {
