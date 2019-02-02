@@ -7,7 +7,7 @@ elseif(MSVC)
 endif()
 
 find_package(PythonInterp REQUIRED)
-#find_package(PythonLibs REQUIRED)
+find_package(PythonLibs REQUIRED)
 find_package(NUMPY REQUIRED)
 
 #--------------------------------------------------------------
@@ -62,5 +62,3 @@ else()
    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/_metaclass.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/functionhelper.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
 endif()
-
-
