@@ -7,7 +7,7 @@ elseif(MSVC)
 endif()
 
 find_package(PythonInterp REQUIRED)
-find_package(PythonLibs REQUIRED)
+#find_package(PythonLibs REQUIRED)
 find_package(NUMPY REQUIRED)
 
 #--------------------------------------------------------------
