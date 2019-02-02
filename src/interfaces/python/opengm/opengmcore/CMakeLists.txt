@@ -32,7 +32,7 @@ include_directories(
 # Add opengmcore library
 #--------------------------------------------------------------
 if(APPLE)
-    add_library(_opengmcore MODULE 
+    add_library(_opengmcore MODULE
     opengmcore.cpp
     pyGmManipulator.cxx
     pyConfig.cxx
@@ -48,7 +48,7 @@ if(APPLE)
     pyEnum.cxx
     )
 else()
-    add_library(_opengmcore SHARED  
+    add_library(_opengmcore SHARED
     opengmcore.cpp
     pyGmManipulator.cxx
     pyConfig.cxx
@@ -81,7 +81,7 @@ if(LINK_RT)
     find_library(RT rt)
     target_link_libraries(_opengmcore ${Boost_PYTHON_LIBRARIES} rt)
 else()
-    target_link_libraries(_opengmcore ${PYTHON_LIBRARY} ${Boost_PYTHON_LIBRARIES})
+    target_link_libraries(_opengmcore ${Boost_PYTHON_LIBRARIES})
 endif(LINK_RT)
 
 IF(WITH_MAXFLOW)
