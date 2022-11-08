@@ -3,7 +3,7 @@
 # docker build -t opengm .
 # docker run --rm -v $PWD:/io opengm sh -c 'cp /wheelhouse/*.whl /io'
 
-FROM quay.io/pypa/manylinux1_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64
 
 WORKDIR /tmp
 

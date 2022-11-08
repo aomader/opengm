@@ -5,7 +5,7 @@ set -x
 
 mkdir /wheelhouse
 
-for PYTHON_ROOT in /opt/python/cp36*
+for PYTHON_ROOT in /opt/python/cp310*
 do
     rm -rf /tmp/python-pkg
     mkdir /tmp/python-pkg
@@ -21,13 +21,13 @@ setup(
     packages=find_packages(),
     package_data={'': ['*.so']},
     install_requires=[
-        'numpy>=1.16',
-        'h5py>=2.9'
+        'numpy>=1.23.4',
+        'h5py>=3.7.0'
     ]
 )
 EOF
 
-    cp -r $PYTHON_ROOT/lib/python3.6/site-packages/opengm .
+    cp -r $PYTHON_ROOT/lib/python3.10/site-packages/opengm .
 
     $PYTHON_ROOT/bin/python setup.py bdist_wheel
 

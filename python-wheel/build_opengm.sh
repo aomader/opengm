@@ -12,12 +12,12 @@
 set -e
 set -x
 
-curl -fSsL -o opengm-python3.zip https://github.com/b52/opengm/archive/python3.zip
+curl -fSsL -o opengm-python3.zip https://github.com/aomader/opengm/archive/python3.zip
 
 
 mkdir -p wheelhouse
 
-for PYTHON_ROOT in /opt/python/cp36*
+for PYTHON_ROOT in /opt/python/cp310*
 do
     # Start from scratch to not deal with previously generated files.
     rm -rf opengm-python3
@@ -26,11 +26,13 @@ do
     unzip opengm-python3.zip
     cd opengm-python3
 
+    echo -e "set(CMAKE_CXX_STANDARD 11)\n$(cat CMakeLists.txt)" > CMakeLists.txt
+
     export PYTHON_BIN=$PYTHON_ROOT/bin/python
     export PIP_BIN=$PYTHON_ROOT/bin/pip
 
-    $PIP_BIN install numpy==1.16.1
-    $PIP_BIN install h5py==2.9.0
+    $PIP_BIN install numpy==1.23.4
+    $PIP_BIN install h5py==3.7.0
 
     cmake \
         -DBUILD_TUTORIALS=OFF \
@@ -43,6 +45,8 @@ do
         -DPYTHON_EXECUTABLE=$PYTHON_BIN \
         -DPYTHON_INCLUDE_DIR=`$PYTHON_BIN -c 'from sysconfig import get_paths; print(get_paths()["include"], end="")'` \
         -DPYTHON_NUMPY_INCLUDE_DIR=`$PYTHON_BIN -c 'import numpy; print(numpy.get_include(), end="")'` \
+        -DPYTHON_LIBRARIES=$PYTHON_ROOT/lib \
+        -DPYTHON_LIBRARY=$PYTHON_ROOT/lib/python3.10 \
         -DWITH_OPENMP=ON \
         .
     make -j4
